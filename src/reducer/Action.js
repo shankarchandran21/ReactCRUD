@@ -1,0 +1,6 @@
+export const ADD_FAMILY = "ADD_FAMILY";
+export const EDIT_FAMILY = "EDIT_FAMILY";
+export const EDIT_FAMILY_ID = "EDIT_FAMILY_ID";
+export const EDIT__COMPLETE = "EDIT__COMPLETE";
+export const ADD_CHILD ="ADD_CHILD";
+export const UPDATE_CHILD_AND_STATE ="UPDATE_CHILD_AND_STATE"

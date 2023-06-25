@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Detail from './Components/Detail/Detail';
+import DetailList from  './Components/DetailList/DetailList'
+import ChildList from './Components/ChildList/ChildList';
+import ChildForm from './Components/ChildForm/ChildForm';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Detail/>}/>
+      <Route path='/list' element={<DetailList/>}/>
+       <Route path='list/child/:id' element={<ChildList/>}/>
+       <Route path='/childForm/:parent/:child' element={<ChildForm/>} />
+    </Routes>
   );
 }
 
