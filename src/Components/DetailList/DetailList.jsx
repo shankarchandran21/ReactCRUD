@@ -28,7 +28,7 @@ if(data?.length<=0){
 
   return (
     <div className='detailList'>
-      {data.map((item,index)=>{
+      {data?.map((item,index)=>{
           return<div key={item.id}>
                 <div class="card">
     <h3 class="card__title">Family {index+1}

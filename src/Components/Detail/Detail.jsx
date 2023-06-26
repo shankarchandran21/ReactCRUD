@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './detail.css'
-import { ADD_FAMILY,EDIT_FAMILY_ID,EDIT__COMPLETE } from "../../reducer/Action"
+import { ADD_FAMILY,EDIT_CHILD_STATE,EDIT_FAMILY_ID,EDIT__COMPLETE } from "../../reducer/Action"
 import Family from '../../assets/pexels-elina-fairytale-3807332.jpg'
 import {BsArrowUpCircle,BsArrowDownCircle} from 'react-icons/bs'
 import { v4 as uuidv4 } from 'uuid';
@@ -61,7 +61,39 @@ const HandleSubmit=(e)=>{
       // flat Method make 3d array into single array
       const flattenedArray_isChild = Child.flatMap(twoDArray => twoDArray.flat()).some((item)=>item.id === editId)
         if(flattenedArray_isChild){
-            console.log("ENTER")
+          let editDetailInState = data.map((item)=>{
+            if(item.id === editId){
+              return {...item,fatherName:detail.fatherName,motherName:detail.motherName,child:detail.child}
+            }else{
+              return item;
+            }
+          })
+          
+          let editChildAndState = editDetailInState.map((family)=>{
+                  console.log("OUT")
+               if(flattenedArray_isChild){
+                  const updatedChild = family.child.map((child)=>{
+                      console.log("IN")
+                      if(child.id === editId){
+                          if(child.gender === 'male'){
+                              return {...child,name:detail.fatherName,partnerName:detail.motherName,child:detail.child}
+                          }else{
+                              return {...child,name:detail.motherName,partnerName:detail.fatherName,child:detail.child}
+                          }
+                      }
+                      return child
+                  })
+                  return {...family,child:updatedChild}
+               }
+              
+               return family
+          })
+          
+          dispatch({type:EDIT_CHILD_STATE,editChildAndState})
+         
+          setDetail({...detail,fatherName:"",motherName:"",child:[]}); 
+          navigate('/list')
+
         }else{
           let editDetail = data.map((item)=>{
             if(item.id === editId){
@@ -73,7 +105,7 @@ const HandleSubmit=(e)=>{
         })
         
         dispatch({type:EDIT__COMPLETE,editDetail})
-      setDetail({...detail,fatherName:"",motherName:""});
+      setDetail({...detail,fatherName:"",motherName:"",child:[]});
       
       
         navigate('/list')
@@ -84,6 +116,9 @@ const HandleSubmit=(e)=>{
     }
    
 }
+
+
+
 
 
   return (

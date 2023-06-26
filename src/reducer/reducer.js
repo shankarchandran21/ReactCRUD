@@ -1,4 +1,4 @@
-import { ADD_FAMILY,EDIT_FAMILY,EDIT_FAMILY_ID,EDIT__COMPLETE,ADD_CHILD ,UPDATE_CHILD_AND_STATE} from "./Action"
+import { ADD_FAMILY,EDIT_FAMILY,EDIT_FAMILY_ID,EDIT__COMPLETE,ADD_CHILD ,UPDATE_CHILD_AND_STATE,EDIT_CHILD_STATE,EDIT_CHILD_DETAIL,CHILD_EDIT_SATE,REMOVE_CHILD_IN_STATE_AND_CHILD} from "./Action"
 
 
 export const reducer = (state,action)=>{
@@ -11,16 +11,25 @@ export const reducer = (state,action)=>{
     }else if(action.type === "EDIT_FALSE"){
         return {...state,  isEdit:true}
     }else if(action.type === EDIT__COMPLETE){
-            return {...state, editId:"", isEdit:false,data:action.editDetail}
+        return {...state, editId:"", isEdit:false,data:action.editDetail}
     } else if(action.type === ADD_CHILD){
         
         return {...state,data:action.childUpdate}
-    }else if(UPDATE_CHILD_AND_STATE){
+    }else if(action.type === UPDATE_CHILD_AND_STATE){
         return {...state,data:action.childUpdateState}
+    }else if(action.type === EDIT_CHILD_STATE){
+       
+        return {...state,data:action.editChildAndState,isEdit:false,editId:""}
+    }else if(action.type === EDIT_CHILD_DETAIL){
+        console.log("ENTER")
+        return{...state,isEdit:true,editId:action.childId}
+    }else if(action.type === CHILD_EDIT_SATE){
+        return {...state,editId:"",isEdit:false,data:action.childUpdateState}
+    }else if(action.type === REMOVE_CHILD_IN_STATE_AND_CHILD){
+        return{...state,data:action.removeChild}
     }else{
-        return{... state}
+        return{...state}
     }
-    
-   return
+   
 
 }
