@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./childlist.css"
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useGlobalContext } from '../../Context/Context'
 import { EDIT_CHILD_DETAIL, REMOVE_CHILD_IN_STATE_AND_CHILD } from '../../reducer/Action'
 
@@ -39,11 +39,18 @@ const removeChild=(child_id)=>{
     }) 
     dispatch({type:REMOVE_CHILD_IN_STATE_AND_CHILD,removeChild})
 }
-
+  if(findDetail.child.length<=0){
+    return <div className='noFamily'>
+    <h1> Sorry No Child is Add!!!</h1>
+    <div>
+      <Link to='/list'>Back To Home</Link>
+    </div>
+  </div>
+  }
   return (
     <div className='child'>
       {findDetail.child.map((item)=>(
-          <div class="child__card" onClick={()=>FillDetails(item.name,item.id,findDetail.id)}>
+          <div key={item.id} class="child__card" onClick={()=>FillDetails(item.name,item.id,findDetail.id)}>
             {item.name? <>
                <div className='child__card-names'>
                <h4>Name:</h4>
@@ -76,7 +83,7 @@ const removeChild=(child_id)=>{
             </>
            :(
               <div>
-                <h4>Fill THE DETAIL</h4>
+                <h4 style={{fontSize:"1.5em"}}> Fill THE DETAIL</h4>
               </div>
 
             )}

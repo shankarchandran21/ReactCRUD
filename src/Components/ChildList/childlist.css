@@ -7,12 +7,12 @@
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    
 }
 
 .child__card {
     cursor: pointer;
-    width: 25%;
+    width: 22%;
     height: auto;
     min-width: 250px;
     min-height: 354px;
@@ -108,14 +108,21 @@ color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
   }
 
   .child__card-names h4{
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 1.3em;
 
   }
   .child__card-names p{
-    font-size: 1.3em;
+    font-size: 1.2em;
 
+  }
+
+  @media screen and (max-width: 1120px) {
+    .child{
+      margin-top: 2rem;
+    }
   }

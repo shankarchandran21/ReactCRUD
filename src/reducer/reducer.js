@@ -1,4 +1,4 @@
-import { ADD_FAMILY,EDIT_FAMILY,EDIT_FAMILY_ID,EDIT__COMPLETE,ADD_CHILD ,UPDATE_CHILD_AND_STATE,EDIT_CHILD_STATE,EDIT_CHILD_DETAIL,CHILD_EDIT_SATE,REMOVE_CHILD_IN_STATE_AND_CHILD} from "./Action"
+import { ADD_FAMILY,EDIT_FAMILY,EDIT_FAMILY_ID,EDIT__COMPLETE,ADD_CHILD ,UPDATE_CHILD_AND_STATE,EDIT_CHILD_STATE,EDIT_CHILD_DETAIL,CHILD_EDIT_SATE,REMOVE_CHILD_IN_STATE_AND_CHILD,REMOVE_FROM_STATE} from "./Action"
 
 
 export const reducer = (state,action)=>{
@@ -27,6 +27,8 @@ export const reducer = (state,action)=>{
         return {...state,editId:"",isEdit:false,data:action.childUpdateState}
     }else if(action.type === REMOVE_CHILD_IN_STATE_AND_CHILD){
         return{...state,data:action.removeChild}
+    }else if(action.type === REMOVE_FROM_STATE){
+        return{...state,data:action.filterData}
     }else{
         return{...state}
     }
